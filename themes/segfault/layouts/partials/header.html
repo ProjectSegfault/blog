@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<nav>
+	{{ $logo := resources.Get "logo.png" }}
+	<a class="brand" href="/">
+		<img src="{{ $logo.Permalink }}" alt="Project Segfault logo" />
+		<span>Project Segfault</span>
+	</a>
+
+	<input type="checkbox" id="toggle-menu" />
+	<label class="menu-icon" for="toggle-menu">
+		<span>Menu</span>
+	</label>
+
+	<div class="links">
+        <a href="https://projectsegfau.lt/instances">Instances</a>
+		<a href="https://projectsegfau.lt/donate">Donate</a>
+		<a href="https://projectsegfau.lt/faq">FAQ</a>
+		<a href="https://projectsegfau.lt/contact">Contact us</a>
+		<a href="https://projectsegfau.lt/team">Our team</a>
+		<a href="https://projectsegfau.lt/timeline">Timeline</a>
+		<a href="#" class="active">Blog</a>
+		<a href="https://projectsegfau.lt/legal">Legal</a>
+		<a href="https://status.projectsegfau.lt">Status</a>
+	</div>
+</nav>
+<style>
+	nav {
+		background-color: var(--primary);
+		border-bottom: 1px solid var(--grey);
+		display: flex;
+		padding: 0.5rem;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	a.brand {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		color: var(--text);
+		gap: 8px;
+		transition: opacity 0.25s;
+	}
+	a.active {
+		color: var(--accent);
+	}
+	a.brand:hover {
+		opacity: 0.6;
+	}
+	.links {
+		display: flex;
+		gap: 0.5rem;
+	}
+	.links > * {
+		padding: 0.5rem;
+		cursor: pointer;
+		color: var(--text);
+		text-decoration: none;
+		transition: color 0.25s;
+		font-size: 13px;
+		font-weight: 500;
+		display: flex;
+		align-items: center;
+	}
+	.links > *:hover {
+		text-decoration: none;
+		color: var(--accent);
+	}
+	img {
+		height: 30px;
+		border-radius: 50%;
+	}
+	.menu-icon {
+		cursor: pointer;
+		display: none;
+	}
+	#toggle-menu {
+		display: none;
+	}
+	.icon > span {
+		display: none;
+	}
+	@media screen and (max-width: 900px) {
+		.links {
+			display: none;
+			width: 100%;
+			padding-top: 12px;
+		}
+		nav {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.links a {
+			display: block;
+		}
+		.menu-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 1;
+			position: absolute;
+			right: 1rem;
+			top: 0.5rem;
+			border: none;
+			border-radius: 10px;
+			height: 30px;
+			width: 30px;
+			cursor: pointer;
+			line-height: 1;
+		}
+		#menu-icon {
+			display: flex;
+			align-items: center;
+			color: var(--text);
+		}
+		#toggle-menu:checked ~ .links {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+		.icon > span {
+			display: block;
+		}
+		.icon {
+			display: flex !important;
+			align-items: center;
+			flex-direction: row;
+			gap: 0.5rem;
+		}
+	}
+</style>
+</nav>

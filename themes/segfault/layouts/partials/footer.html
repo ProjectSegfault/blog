@@ -1,0 +1,30 @@
+<footer>
+	<div class="content">
+		<span>© 2021 - present, Project Segfault <a href="https://projectsegfau.lt/team">team</a>. Made with <a href="https://gohugo.io">Hugo</a> and released under the <a href="https://opensource.org/licenses/MIT">MIT license</a>.</span>
+        <span><a href="https://github.com/ProjectSegfault/blog">Source code</a></span>
+	</div>
+</footer>
+
+<style>
+    footer {
+		display: flex;
+		flex-direction: column;
+		font-size: 20px;
+		position: sticky;
+		top: 100vh;
+	}
+	div.content {
+		display: flex;
+		align-items: center;
+        justify-content: center;
+		flex-direction: column;
+		border-top: 1px solid var(--grey);
+		padding: 0.5rem;
+	}
+	div.content > * {
+		color: var(--text);
+		font-size: 13px;
+		font-weight: 500;
+		text-align: center;
+	}
+</style>

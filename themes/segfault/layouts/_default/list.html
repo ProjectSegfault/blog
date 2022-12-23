@@ -1,0 +1,69 @@
+{{ define "main" }}
+  <main>
+    <style>
+      .blog-hero {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        color: var(--accent);
+        text-align: center;
+      }
+
+      .blog-subtext {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 0;
+        color: var(--text);
+        text-align: center;
+      }
+      .blogsList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+      .blogPost {
+        width: 100%;
+        max-width: 800px;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: var(--secondary);
+      }
+    </style>
+  {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) }}
+  <h2 style="padding-left: 1rem;">Posts with tag {{.Title}}</h2>
+  <a href="index.xml" class="rss-link">RSS for this tag</a>
+  {{- end }}
+  {{ if .IsHome }}
+  <h1 class="blog-hero">Project Segfault Blog</h1>
+  <h3 class="blog-subtext">The official blog for all things Project Segfault.</h3>
+  {{ end }}
+  <div class="container">
+    <div class="blogsList">
+      {{ $pages := .Pages }}
+      {{ if .IsHome }}{{ $pages = .Site.RegularPages }}{{ end }}
+      {{ range (where $pages "Section" "!=" "") }}
+        {{ if .Params.Cover}}
+        <div class="blogPost hasCover" style="background-image: url({{.Params.Cover}}); background-size: cover;">
+        {{ else }}
+        <div class="blogPost">
+        {{ end }}
+          {{ $date := .Date.Format "Mon, Jan 2, 2006 @ 15.04" }}
+          {{.Scratch.Set "date" $date}}
+          {{.Scratch.Set "author" .Params.Author}}
+          {{.Scratch.Set "readingTime" .ReadingTime}}
+          {{.Scratch.Set "wordCount" .WordCount}}
+          <h2>{{ .Title | markdownify }}</h2>
+          <p class="blogPostMetadata">{{.Scratch.Get "date"}}{{if .Scratch.Get "author"}} • Written by {{.Scratch.Get "author"}}{{end}}{{if .Scratch.Get "readingTime"}} • {{.Scratch.Get "readingTime"}} min read{{end}}{{ if .Scratch.Get "wordCount"}} • {{.Scratch.Get "wordCount"}} words{{end}}</p>
+          <p>{{ .Description | markdownify }}</p>
+          <a class="read-more button" href="{{ .RelPermalink }}"
+            >Read more →</a
+          >
+        </div>
+        {{ end }}
+    </div>
+  </div>
+  </main>
+{{ end }}

@@ -1,0 +1,65 @@
+{{ define "main" }}
+<main>
+    <div class="back-home-container">
+        <a href="{{ .Site.BaseURL }}" class="back-link">← Back to home</a>
+    </div>
+    <header class="blog-metadata">
+        {{ $date := .Date.Format "Mon, Jan 2, 2006 @ 15.04" }}
+        {{ .Scratch.Set "date" $date}}
+        {{ .Scratch.Set "author" .Params.Author}}
+        {{ .Scratch.Set "readingTime" .ReadingTime}}
+        {{ .Scratch.Set "wordCount" .WordCount}}
+        <h1 class="blog-hero">{{ .Title }}</h1>
+        <p class="blog-post-metadata">{{.Scratch.Get "date"}}{{if .Scratch.Get "author"}} • Written by <b>{{.Scratch.Get "author"}}</b>{{end}}{{if .Scratch.Get "readingTime"}} • {{.Scratch.Get "readingTime"}} min read{{end}}{{ if .Scratch.Get "wordCount"}} • {{.Scratch.Get "wordCount"}} words{{end}}</p>
+        {{ if .Params.Cover}}
+        <img src="{{.Params.Cover | absURL}}" alt="{{.Title}}" style="max-width: 100%; max-height: 50%;  border-radius: 8px;">
+        {{end}}
+        {{ if .Params.CoverCaption}}
+        <p><i>{{ .Params.CoverCaption | markdownify }}</i></p>
+        {{end}}
+    </header>
+    <div class="article-container">
+    <article>
+        {{ .Content }}
+    </article>
+    </div>
+</main>
+
+<style>
+    .blog-hero {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-align: center;
+    }
+    .article-container {
+        display: flex;
+        justify-content: center;
+    }
+    article {
+        background-color: var(--secondary);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        max-width: fit-content;
+    }
+    .back-link {
+        background-color: var(--secondary);
+        padding: 0.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text);
+        text-align: center;
+        display: inline-block;
+    }
+    .blog-post-metadata {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+    }
+    .back-home-container {
+        text-align: center;
+    }
+</style>
+
+{{ end }}

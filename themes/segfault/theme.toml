@@ -1,0 +1,15 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Segfault"
+license = "MIT"
+licenselink = "https://github.com/ProjectSegfault/blog/blob/master/themes/segfault/LICENSE"
+description = "Project Segfault Hugo theme"
+homepage = "https://projectsegfau.lt"
+tags = []
+features = []
+min_version = "0.41.0"
+
+[author]
+  name = "Odyssey"
+  homepage = "https://odyssey346.dev"

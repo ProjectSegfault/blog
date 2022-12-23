@@ -1,0 +1,10 @@
+baseURL = '//blog.projectsegfau.lt'
+languageCode = 'en-us'
+title = 'Project Segfault Blog'
+description = 'The official blog for all things Project Segfault'
+theme = 'segfault'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
