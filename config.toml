@@ -1,4 +1,5 @@
-baseURL = '//blog.projectsegfau.lt'
+baseURL = '//blog.dev.projectsegfau.lt'
+# Replace this to blog when it's ready.
 languageCode = 'en-us'
 title = 'Project Segfault Blog'
 description = 'The official blog for all things Project Segfault'
